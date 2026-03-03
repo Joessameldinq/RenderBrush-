@@ -1,2 +1,6 @@
-learn_makefile.txt
-build
+# .gitignore
+build/
+*.o
+*.out
+savings
+.vscode/

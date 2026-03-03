@@ -37,4 +37,8 @@ public:
      * Getters
      */
     int getHeight(){return height;}
+    /**
+     * Setters
+     */
+    void toogleEraser();
 };

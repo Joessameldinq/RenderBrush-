@@ -113,6 +113,14 @@ void Toolbar::drawBrushControls() {
     SDL_RenderDrawLine(renderer, plusPos.x + 5, pmy, plusPos.x + swatchSize - 5, pmy);
     SDL_RenderDrawLine(renderer, pmx, plusPos.y + 5, pmx, plusPos.y + swatchSize - 5);
 }
+void Toolbar::toogleEraser(){
+    erasing = erasing ^ 1;
+    if(erasing){
+        canvas->setColor({255, 255, 255, 255}); 
+    }else{
+        canvas->setColor(Colors::ALL[selectedColorIndex]);
+    }
+}
 void Toolbar::handleClick(Point clicked){
     //Click on some color
     for(int i = 0 ; i  < 10 ;i++){
@@ -139,12 +147,7 @@ void Toolbar::handleClick(Point clicked){
 
     // Eraser
     if(isButtonClicked(clicked,getEraserButtonPos(),swatchSize,swatchSize)){
-        erasing = !erasing;
-        if(erasing){
-            canvas->setColor({255, 255, 255, 255}); 
-        }else{
-            canvas->setColor(Colors::ALL[selectedColorIndex]);
-        }
+        toogleEraser();
         return;
     }
     
