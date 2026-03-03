@@ -39,6 +39,7 @@ Gui::Gui(const std::string& title,int width,int height,int fps)
 }
 
 Gui::~Gui(){
+    delete toolbar;
     delete canvas;
     if(renderer) SDL_DestroyRenderer(renderer);
     if(window) SDL_DestroyWindow(window);
