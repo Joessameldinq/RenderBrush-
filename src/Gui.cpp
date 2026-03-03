@@ -82,6 +82,7 @@ void Gui::handleEvents(){
                     case SDLK_ESCAPE: running = false;  break;  // quit
                     case SDLK_c:      canvas->clear();  break;  // clear canvas
                     case SDLK_s: canvas->save("savings/RenderBrush_output.png"); break;
+                    case SDLK_e: toolbar->toogleEraser(); break;
                 }
                 break;
         default:
