@@ -122,9 +122,3 @@ bool Gui::isRunning(){
     return running;
 }
 
-bool Gui::isButtonClicked(Point click, Point buttonCorner, int width, int height) {
-    return click.x >= buttonCorner.x &&
-           click.x <= buttonCorner.x + width &&
-           click.y >= buttonCorner.y &&
-           click.y <= buttonCorner.y + height;
-}

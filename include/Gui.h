@@ -39,10 +39,7 @@ public:
     void handleEvents(); 
     void render(); // Draw Textures
 
-    /**
-     * Helpers
-     */
-    bool isButtonClicked(Point click,Point buttonCorner,int width,int height);
+
     /**
      * Getters
      */
