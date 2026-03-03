@@ -1,6 +1,6 @@
 CXX      = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
-SDL_FLAGS = $(shell sdl2-config --cflags --libs)
+SDL_FLAGS = $(shell sdl2-config --cflags --libs) -lSDL2_image
 TARGET   = Paint
 SRCS     = $(wildcard src/*.cpp)
 OBJS     = $(patsubst src/%.cpp,build/%.o,$(SRCS))

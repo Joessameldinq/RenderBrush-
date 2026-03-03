@@ -1,5 +1,6 @@
 #include "../include/Canvas.h"
 #include <cmath>
+#include <string>
 
 Canvas::Canvas(SDL_Renderer* renderer,int width ,int height)
     :renderer(renderer) , width(width),height(height)
@@ -85,5 +86,37 @@ void Canvas::setBrushSize(int size)    { brushSize  = size;  }
 
 void Canvas::render() {
     SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+}
+
+void Canvas::save(const std::string& path){
+    SDL_Surface* surface = SDL_CreateRGBSurface(
+        0, width, height, 32,
+        0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF
+    );
+    if (!surface) {
+        SDL_Log("SDL_CreateRGBSurface Error: %s", SDL_GetError());
+        return;
+    }
+
+    // Read pixels from texture into surface
+    SDL_SetRenderTarget(renderer,texture);
+    SDL_RenderReadPixels(
+        renderer,nullptr,
+        SDL_PIXELFORMAT_RGBA8888,
+        surface->pixels,surface->pitch
+    );
+    SDL_SetRenderTarget(renderer, nullptr);
+
+    // Save as png
+    if(IMG_SavePNG(surface,path.c_str()) != 0){
+        SDL_Log("IMG_SavePNG Error: %s", IMG_GetError());
+    }else{
+        SDL_Log("Saved to %s", path.c_str());
+    }
+
+    SDL_FreeSurface(surface);
+
+
+
 }
 

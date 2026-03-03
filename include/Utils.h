@@ -5,5 +5,5 @@ typedef struct Point{
     int x;
     int y;
 };
-
+bool isButtonClicked(Point click, Point buttonCorner, int width, int height);
 #endif

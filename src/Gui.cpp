@@ -34,7 +34,7 @@ Gui::Gui(const std::string& title,int width,int height,int fps)
     }
 
     canvas   = new Canvas(renderer, width, height);
-    toolbar = new Toolbar(renderer,canvas,(Point){1,1},width,height/10);
+    toolbar = new Toolbar(renderer,canvas,(Point){1,1},width*0.60,height/10);
     running = true;
 }
 
@@ -57,8 +57,15 @@ void Gui::handleEvents(){
         
         case SDL_MOUSEBUTTONDOWN:
             if(event.button.button == SDL_BUTTON_LEFT){
+                int mouseX = event.button.x;
+                int mouseY = event.button.y;
+                if(mouseY < toolbar->getHeight()){
+                    toolbar->handleClick({mouseX,mouseY});
+                }
+                else{
+                    canvas->onMouseDown(mouseX,mouseY);
+                }
                 mouseDown = true;
-                canvas->onMouseDown(event.button.x,event.button.y);
             }
             break;
         case SDL_MOUSEMOTION:
@@ -74,6 +81,7 @@ void Gui::handleEvents(){
                 switch (event.key.keysym.sym) {
                     case SDLK_ESCAPE: running = false;  break;  // quit
                     case SDLK_c:      canvas->clear();  break;  // clear canvas
+                    case SDLK_s: canvas->save("savings/RenderBrush_output.png"); break;
                 }
                 break;
         default:

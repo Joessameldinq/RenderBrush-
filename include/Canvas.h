@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "Utils.h"
-
+#include <SDL2/SDL_image.h>
+#include <string>
 
 class Canvas{
 private:
@@ -24,7 +25,7 @@ public:
 
     void render();
     void clear();
-
+    void save(const std::string& path);
     /**
      * Draweres
      */
