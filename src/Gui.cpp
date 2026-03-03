@@ -34,6 +34,7 @@ Gui::Gui(const std::string& title,int width,int height,int fps)
     }
 
     canvas   = new Canvas(renderer, width, height);
+    toolbar = new Toolbar(renderer,canvas,(Point){1,1},width,height/10);
     running = true;
 }
 
@@ -88,6 +89,7 @@ void Gui::render(){
 
     //2. draw canvas
     canvas->render();
+    toolbar->render();
 
     SDL_RenderPresent(renderer);
 }

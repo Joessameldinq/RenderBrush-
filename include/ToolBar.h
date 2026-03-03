@@ -7,11 +7,10 @@
 class Toolbar {
 private:
     SDL_Renderer* renderer;
-    Canvas*       canvas;
-
-    int x, y;          // top-left corner of toolbar
+    Canvas* canvas = nullptr; //To set the color of the brush
+    Point leftUpCorner;         // top-left corner of toolbar
     int width, height; // toolbar dimensions
-    int swatchSize = 30;
+    int swatchSize;
     int padding    = 5;
 
     int selectedColorIndex = 0;
@@ -23,7 +22,7 @@ private:
     void drawClearButton();
 
 public:
-    Toolbar(SDL_Renderer* renderer, Canvas* canvas, int x, int y, int width, int height);
+    Toolbar(SDL_Renderer* renderer,Canvas* canvas,Point leftUpCorner, int width, int height);
     void render();
     void handleClick(int x, int y);
 };

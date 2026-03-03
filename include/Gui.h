@@ -1,6 +1,6 @@
 #ifndef GUI_H
 #define GUI_H
-
+#include "ToolBar.h"
 #include <SDL2/SDL.h>
 #include <string>
 #include "Utils.h"
@@ -9,6 +9,7 @@ class Gui
 {
 private:
     Canvas* canvas = nullptr;
+    Toolbar* toolbar = nullptr;
     /**
      * Core SDL Objects
      */
